@@ -5,11 +5,6 @@ pipeline {
             steps {
                 sh 'echo "build"'
             }
-        }
-        stage('Test') {
-            steps {
-                sh 'echo "test"'
-            }
-        }
+        }        
     }
 }
