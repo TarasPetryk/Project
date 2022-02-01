@@ -4,8 +4,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                git clone git@github.com:TarasPetryk/clinic.git
-                git branch
+                sh "git clone git@github.com:TarasPetryk/clinic.git"
+                sh "git branch"
             }
         }        
     }
