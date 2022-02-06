@@ -12,21 +12,10 @@ pipeline {
                 
                            }
         }
-        stage('Test') {
-    steps {
-        sh(returnStdout: true, script: '''#!/bin/bash
-            if [[ 2 > 1 ]];then
-            echo "Found file"
-            else
-            echo "Did not find file"
-            fi
-        '''.stripIndent())
-    }
-}
         stage("Tets commit") {
             steps{
                 script {
-                    if ( 2 > 1) { sh "echo 2" }
+                    if ( $(git log -1 --pretty=%B | cut -c1-1)  = [ && $(git log -1 --pretty=%B | wc -c)  > 05 ) { sh "echo 2" }
                     else { sh "echo 1" }
                 }
                 sh 'git branch'                
