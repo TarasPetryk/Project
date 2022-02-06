@@ -15,8 +15,8 @@ pipeline {
         }
         stage("Lint Dockerfile") {
             steps{
-                //sh 'hadoint Dockerfile'
-                sh 'ls -la'
+                sh 'hadolint Dockerfile'
+                // sh 'ls -la'
             }
         }
         stage("Test commit") {
