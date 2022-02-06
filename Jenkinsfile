@@ -1,5 +1,8 @@
 pipeline {
-    agent any   
+    agent any
+    environment {
+        currentDate = sh(returnStdout: true, script: 'date +"%Y_%m_%d_%I_%M_%p').trim()
+    }
     stages {
         stage('Build') {
             steps {
@@ -8,8 +11,7 @@ pipeline {
                 git branch: 'dev', credentialsId: 'git-key', url: 'git@github.com:TarasPetryk/clinic.git'
                  script { 
                      env.commit_first_letter = sh (script: 'git log -1 --pretty=%B | cut -c1-1', returnStdout: true).trim()
-                     env.commit_length = sh (script: 'git log -1 --pretty=%B | wc -c', returnStdout: true).trim()
-                     env.currentDate = sh(returnStdout: true, script: 'date +"%Y_%m_%d_%I_%M_%p').trim()
+                     env.commit_length = sh (script: 'git log -1 --pretty=%B | wc -c', returnStdout: true).trim()                     
                      println currentDate
         }
                 
@@ -18,10 +20,10 @@ pipeline {
         stage("Lint Dockerfile") {
             steps{                
                 sh '''                    
-                    touch /home/jenkins/share/"${env.currentDate}"
+                    touch /home/jenkins/share/"${currentDate}"
                     '''
                 sh 'hadolint Dockerfile > output || :'
-                sh 'echo "${env.currentDate}"'
+                sh 'echo "${currentDate}"'
                 sh 'ls /home/jenkins/share'
             }
         }
