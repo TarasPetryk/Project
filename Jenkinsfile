@@ -15,7 +15,7 @@ pipeline {
         }
         stage("Lint Dockerfile") {
             steps{
-                sh 'ls /home/jenkins'
+                sh 'ls /home/jenkins/share'
                 sh 'hadolint Dockerfile > output || :'
                 sh 'cat output'
                 // sh 'ls -la'
