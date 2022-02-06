@@ -6,8 +6,7 @@ pipeline {
                 echo 'Building.....'
                 // git branch: 'main', credentialsId: 'git-key', url: 'git@github.com:TarasPetryk/clinic.git'
                 git branch: 'dev', credentialsId: 'git-key', url: 'git@github.com:TarasPetryk/clinic.git'
-                 script {                    
-                     env.log_name = sh (script: '$(date +"%Y_%m_%d_%I_%M_%p").log', returnStdout: true).trim()
+                 script { 
                      env.commit_first_letter = sh (script: 'git log -1 --pretty=%B | cut -c1-1', returnStdout: true).trim()
                      env.commit_length = sh (script: 'git log -1 --pretty=%B | wc -c', returnStdout: true).trim()
         }
@@ -16,6 +15,10 @@ pipeline {
         }
         stage("Lint Dockerfile") {
             steps{
+                bat """
+                    set OutputFolderName=%date:~12,2%%date:~4,2%%date:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%
+                    touch /home/jenkins/share/%OutputFolderName%
+                    """
                 sh 'touch /home/jenkuns/share/$(env.log_name)'
                 sh 'hadolint Dockerfile > output || :'
                 sh 'cat output'
