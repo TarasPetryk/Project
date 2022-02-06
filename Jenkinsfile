@@ -19,6 +19,13 @@ pipeline {
                     else { sh "echo 1" }
                 }
                 sh 'git branch'
+                sh(returnStdout: true, script: '''#!/bin/bash
+                    if [ 3 > 2 ];then
+                    echo "3"
+                    else
+                    echo "2"
+                    fi
+                '''.stripIndent())
             }
         }
     }
