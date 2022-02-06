@@ -15,8 +15,8 @@ pipeline {
         stage("Tets commit") {
             steps{
                 script {
-                    if ( 2 > 1) { echo 2}
-                    else {echo 1}
+                    if ( 2 > 1) { sh "echo 2" }
+                    else { sh "echo 1" }
                 }
             }
         }
