@@ -13,6 +13,11 @@ pipeline {
                 
                            }
         }
+        stage("Lint Dockerfile") {
+            steps{
+                sh 'hadoint Dockerfile'
+            }
+        }
         stage("Tets commit") {
             steps{
                 script {
