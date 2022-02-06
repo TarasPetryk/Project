@@ -9,14 +9,14 @@ pipeline {
                  script { 
                      env.commit_first_letter = sh (script: 'git log -1 --pretty=%B | cut -c1-1', returnStdout: true).trim()
                      env.commit_length = sh (script: 'git log -1 --pretty=%B | wc -c', returnStdout: true).trim()
+                     file_name = sh (script: '$(date +"%Y_%m_%d_%I_%M_%p").log', returnStdout: true).trim()
         }
                 
                            }
         }
         stage("Lint Dockerfile") {
             steps{                
-                sh ''' 
-                    file_name=$(date +"%Y_%m_%d_%I_%M_%p").log
+                sh '''                    
                     touch /home/jenkins/share/$file_name
                     '''
                 sh 'hadolint Dockerfile > output || :'
