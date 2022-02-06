@@ -20,7 +20,7 @@ pipeline {
                     touch /home/jenkins/share/$file_name
                     '''
                 sh 'hadolint Dockerfile > output || :'
-                sh 'cat output'
+                sh 'echo $file_name'
                 sh 'ls /home/jenkins/share'
             }
         }
