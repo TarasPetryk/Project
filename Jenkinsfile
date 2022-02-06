@@ -10,6 +10,7 @@ pipeline {
                      env.commit_first_letter = sh (script: 'git log -1 --pretty=%B | cut -c1-1', returnStdout: true).trim()
                      env.commit_length = sh (script: 'git log -1 --pretty=%B | wc -c', returnStdout: true).trim()
                      currentDate = sh(returnStdout: true, script: 'date +%Y-%m-%d').trim()
+                     println currentDate
         }
                 
                            }
