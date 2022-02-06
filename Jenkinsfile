@@ -15,8 +15,10 @@ pipeline {
         }
         stage("Lint Dockerfile") {
             steps{                
-                sh 'file_name=$(date +"%Y_%m_%d_%I_%M_%p").log'
-                sh 'touch /home/jenkins/share/$file_name'
+                sh ''' 
+                    file_name=$(date +"%Y_%m_%d_%I_%M_%p").log
+                    touch /home/jenkins/share/$file_name
+                    '''
                 sh 'hadolint Dockerfile > output || :'
                 sh 'cat output'
                 sh 'ls /home/jenkins/share'
