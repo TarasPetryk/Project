@@ -9,13 +9,18 @@ pipeline {
                 sh 'git log -1 --pretty=%B'
                 // sh 'if [[ $(git log -1 --pretty=%B | cut -c1-1)  = [ && $(git log -1 --pretty=%B | wc -c)  > 05 ]] ; then git checkout main && git merge dev -m automerge && git push origin ; else echo error ; fi'
                 // sh 'if [[ $(git log -1 --pretty=%B | cut -c1-1)  = [ && $(git log -1 --pretty=%B | wc -c)  > 05 ]] ; then echo 1; else echo 2 ; fi'
+                GIT_COMMIT_EMAIL = sh (
+                    script: 'git log -1 --pretty=%B',
+                    returnStdout: true
+                ).trim()
+                echo "Git committer email: ${GIT_COMMIT_EMAIL}"
                 
                            }
         }
         stage("Tets commit") {
             steps{
                 script {
-                    if ( $(git log -1 --pretty=%B | cut -c1-1)  = [ && $(git log -1 --pretty=%B | wc -c)  > 05 ) { sh "echo 2" }
+                    if ( 2 > 3 ) { sh "echo 2" }
                     else { sh "echo 1" }
                 }
                 sh 'git branch'                
