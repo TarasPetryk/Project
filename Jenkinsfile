@@ -11,10 +11,12 @@ pipeline {
                 // sh 'if [[ $(git log -1 --pretty=%B | cut -c1-1)  = [ && $(git log -1 --pretty=%B | wc -c)  > 05 ]] ; then echo 1; else echo 2 ; fi'
                 echo 'Pre Script'
                  script {
-            env.GIT_COMMIT_MSG = sh (script: 'git log -1 --pretty=%B | cut -c1-1', returnStdout: true).trim()
+                     env.commit_first_letter = sh (script: 'git log -1 --pretty=%B | cut -c1-1', returnStdout: true).trim()
+                     env.commit_length = sh (script: 'git log -1 --pretty=%B | wc -c', returnStdout: true).trim()
         }
                 echo 'message should be here'
-                println GIT_COMMIT_MSG
+                println commit_first_letter
+                println commit_length
                 echo 'Post Script'
                            }
         }
