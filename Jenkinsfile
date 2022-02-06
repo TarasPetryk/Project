@@ -15,7 +15,8 @@ pipeline {
         }
         stage("Lint Dockerfile") {
             steps{
-                sh 'hadolint Dockerfile > output'
+                sh 'echo 1415 > output'
+                // sh 'hadolint Dockerfile > output'
                 sh 'cat output'
                 // sh 'ls -la'
             }
