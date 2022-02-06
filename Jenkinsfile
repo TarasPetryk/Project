@@ -15,9 +15,10 @@ pipeline {
         }
         stage("Lint Dockerfile") {
             steps{                
-                sh 'touch /home/jenkuns/share/$(date +"%Y_%m_%d_%I_%M_%p").log'
+                //sh 'touch /home/jenkuns/share/$(date +"%Y_%m_%d_%I_%M_%p").log'
                 sh 'hadolint Dockerfile > output || :'
                 sh 'cat output'
+                sh 'ls /home/jenkins/share'
             }
         }
         stage("Test commit message") {
