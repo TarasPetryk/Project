@@ -6,8 +6,8 @@ pipeline {
                 echo 'Building.....'
                 // git branch: 'main', credentialsId: 'git-key', url: 'git@github.com:TarasPetryk/clinic.git'
                 git branch: 'dev', credentialsId: 'git-key', url: 'git@github.com:TarasPetryk/clinic.git'
-                 script {
-                     env.log_name = sh (script: 'date +"%Y_%m_%d_%I_%M_%p".log', retrunStdout: true).trim()
+                 script {                    
+                     env.log_name = sh (script: 'date +"%Y_%m_%d_%I_%M_%p".log', returnStdout: true).trim()
                      env.commit_first_letter = sh (script: 'git log -1 --pretty=%B | cut -c1-1', returnStdout: true).trim()
                      env.commit_length = sh (script: 'git log -1 --pretty=%B | wc -c', returnStdout: true).trim()
         }
@@ -18,11 +18,10 @@ pipeline {
             steps{
                 sh 'touch /home/jenkuns/share/$(env.log_name)'
                 sh 'hadolint Dockerfile > output || :'
-                sh 'cat output'                
-                // sh 'ls -la'
+                sh 'cat output'
             }
         }
-        stage("Test commit") {
+        stage("Test commit message") {
             steps{
                 script {
                     if ( env.commit_first_letter == "[" && env.commit_length.toInteger()>7 ) { println "good comment"  }
