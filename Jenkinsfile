@@ -23,8 +23,8 @@ pipeline {
         stage("Tets commit") {
             steps{
                 script {
-                    if ( 2 > 3 ) { sh "echo 2" }
-                    else { sh "echo 1" }
+                    if ( env.commit_first_letter == "U" ) { printline "worked"  }
+                    else { sh "echo 1488" }
                 }
                 sh 'git branch'                
             }
