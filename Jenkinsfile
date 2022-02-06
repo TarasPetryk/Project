@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
     steps {
         sh(returnStdout: true, script: '''#!/bin/bash
-            if [[ 2>1 ]];then
+            if [[ 2 > 1 ]];then
             echo "Found file"
             else
             echo "Did not find file"
