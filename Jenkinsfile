@@ -23,7 +23,7 @@ pipeline {
         stage("Tets commit") {
             steps{
                 script {
-                    if ( env.commit_length>7 ) { println "worked"  }
+                    if ( env.commit_length.toInteger()>7 ) { println "worked"  }
                     else { sh "echo 1488" }
                 }
                 sh 'git branch'                
