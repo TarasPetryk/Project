@@ -15,10 +15,11 @@ pipeline {
         }
         stage("Lint Dockerfile") {
             steps{
-                sh 'hadoint Dockerfile'
+                //sh 'hadoint Dockerfile'
+                sh 'ls -la'
             }
         }
-        stage("Tets commit") {
+        stage("Test commit") {
             steps{
                 script {
                     if ( env.commit_first_letter == "[" && env.commit_length.toInteger()>7 ) { println "good comment"  }
