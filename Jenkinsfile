@@ -18,10 +18,10 @@ pipeline {
         stage("Lint Dockerfile") {
             steps{                
                 sh '''                    
-                    touch /home/jenkins/share/$currentDate
+                    touch /home/jenkins/share/"${currentDate}"
                     '''
                 sh 'hadolint Dockerfile > output || :'
-                sh 'echo $currentDate'
+                sh 'echo "${currentDate}"'
                 sh 'ls /home/jenkins/share'
             }
         }
