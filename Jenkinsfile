@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    //environment {
-     //   currentDate = sh(returnStdout: true, script: 'date +"%Y_%m_%d_%I_%M_%p').trim()
-   // }
+    environment {
+        currentDate = "TEST"
+    }
     stages {
         stage('Build') {
             steps {
@@ -12,8 +12,8 @@ pipeline {
                  script {                      
                      env.commit_first_letter = sh (script: 'git log -1 --pretty=%B | cut -c1-1', returnStdout: true).trim()
                      env.commit_length = sh (script: 'git log -1 --pretty=%B | wc -c', returnStdout: true).trim()
-                     env.test_var = sh (script: 'date +"%Y_%m_%d_%I_%M_%p', returnStdout: true).trim()
-                     println env.test_var
+                     // env.test_var = sh (script: 'date +"%Y_%m_%d_%I_%M_%p', returnStdout: true).trim()
+                     println currentDate
         }
                 
                            }
