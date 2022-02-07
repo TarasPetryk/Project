@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        currentDate = java.time.LocalDateTime.now() + ".log"
+        currentDate = java.time.LocalDateTime.now()
+        currentDate = currentDate + ".log"
     }
     stages {
         stage('Build') {
