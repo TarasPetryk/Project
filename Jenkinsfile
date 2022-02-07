@@ -20,8 +20,8 @@ pipeline {
         }
         stage("Lint Dockerfile") {
             steps{ 
-                // sh 'touch /home/jenkins/share/$currentDate'
-                sh 'hadolint Dockerfile > /home/jenkins/share/$currentDate || :'
+                sh 'touch /home/jenkins/share/$currentDate'
+                sh 'hadolint Dockerfile >> /home/jenkins/share/$currentDate || :'
                 //sh 'echo "${currentDate}"'
                 sh 'ls /home/jenkins/share'
             }
@@ -29,8 +29,8 @@ pipeline {
         stage("Test commit message") {
             steps{
                 script {
-                    if ( env.commit_first_letter == "[" && env.commit_length.toInteger()>7 ) { sh 'echo "Good comment in last commit" > /home/jenkins/share/$currentDate'  }
-                    else { sh 'echo "Bad comment in last commit" > /home/jenkins/share/$currentDate'  }
+                    if ( env.commit_first_letter == "[" && env.commit_length.toInteger()>7 ) { sh 'echo "Good comment in last commit" >> /home/jenkins/share/$currentDate'  }
+                    else { sh 'echo "Bad comment in last commit" >> /home/jenkins/share/$currentDate'  }
                 }
                 sh 'git branch'                
             }
