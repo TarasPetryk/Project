@@ -28,6 +28,7 @@ pipeline {
         }
         stage("Test commit message") {
             steps{
+                sh 'pwd'
                 sh 'echo "   Testing commit comment for best practice" >> /home/jenkins/share/$currentDate'
                 script {
                     if ( env.commit_first_letter == "[" && env.commit_length.toInteger()>7 ) { sh 'echo "Good comment in last commit" >> /home/jenkins/share/$currentDate'  }
@@ -41,7 +42,7 @@ pipeline {
           agent { label 'self' }
             steps{
              sh 'pwd'
-             sh 'ls -la /user'
+             sh 'ls -la /'
             }
         }
     }
