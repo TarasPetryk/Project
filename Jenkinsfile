@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'docker-slave' }
+    agent { label 'self' }
     environment {
         currentDate = java.time.LocalDateTime.now()
     }
