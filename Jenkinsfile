@@ -41,7 +41,7 @@ pipeline {
           agent { label 'self' }
             steps{
              sh 'pwd'
-             sh 'ls -la'
+             sh 'ls -la /user'
             }
         }
     }
