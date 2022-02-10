@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                //echo 'Building..'
                 // git branch: 'main', credentialsId: 'git-key', url: 'git@github.com:TarasPetryk/clinic.git'
                 git branch: 'dev', credentialsId: 'git-key', url: 'git@github.com:TarasPetryk/clinic.git'
                  script {                      
@@ -23,7 +23,7 @@ pipeline {
                 sh 'echo "  Linting of Dockerfile" > /home/jenkins/share/$currentDate'
                 sh 'hadolint Dockerfile >> /home/jenkins/share/$currentDate || :'
                 //sh 'echo "${currentDate}"'
-                sh 'ls /home/jenkins/share'
+               // sh 'ls /home/jenkins/share'
             }
         }
         stage("Test commit message") {
@@ -33,17 +33,9 @@ pipeline {
                 script {
                     if ( env.commit_first_letter == "[" && env.commit_length.toInteger()>7 ) { sh 'echo "Good comment in last commit" >> /home/jenkins/share/$currentDate'  }
                     else { sh 'echo "Bad comment in last commit" >> /home/jenkins/share/$currentDate'  }
-                }
-                sh 'git branch'                
+                }                                
             }
         }
         
-        stage("Test another agent"){
-          agent { label 'self' }
-            steps{
-             sh 'pwd'
-             sh 'ls -la /'
-            }
-        }
     }
 }
