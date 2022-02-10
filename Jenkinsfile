@@ -36,5 +36,13 @@ pipeline {
                 sh 'git branch'                
             }
         }
+        
+        stage("Test another agent"){
+          agent { label 'self' }
+            steps{
+             sh 'pwd'
+             sh 'ls -la'
+            }
+        }
     }
 }
