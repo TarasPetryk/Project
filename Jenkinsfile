@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-              sh 'echo Hello World'
+                git branch: 'main', credentialsId: 'github', url: 'git@github.com:TarasPetryk/clinic.git'                
+                sh 'ls'
+                sh 'pwd'
             }
         }
     }
