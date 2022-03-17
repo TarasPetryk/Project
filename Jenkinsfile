@@ -12,9 +12,11 @@ pipeline {
                 
                 sh 'cat /var/lib/jenkins/workspace/var'
                 sh 'echo "$(($(cat /var/lib/jenkins/workspace/var) + 1))" > /var/lib/jenkins/workspace/var '
-                env.VERSION = sh 'cat /var/lib/jenkins/workspace/var'
+                script {
+                  env.VERS = "3"
+                }                
                 //def VERSION = sh 'cat /var/lib/jenkins/workspace/var'
-                echo "Variable is ${VERSION}"
+                echo "Variable is ${VERS}"
                 //git branch: 'main', credentialsId: 'github', url: 'git@github.com:TarasPetryk/clinic.git'                
                 //sh 'ls'
                 //sh 'pwd'
