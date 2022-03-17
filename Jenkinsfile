@@ -15,7 +15,7 @@ pipeline {
         stage('BUILD') {
             agent { label 'self'}
             steps {
-                //sh './mvnw package'
+                sh './mvnw package'
                 sh 'ls'
             }
         }
