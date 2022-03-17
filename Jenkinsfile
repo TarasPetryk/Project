@@ -5,10 +5,11 @@ pipeline {
         
         stage('CHECKOUT') {
             agent { label 'self'}
-            steps {
-                environment {
+            environment {
                VERSION = "1" 
                 }
+            steps {
+                
                 sh 'cat /var/lib/jenkins/workspace/var'
                 sh 'echo "$(($(cat /var/lib/jenkins/workspace/var) + 1))" /var/lib/jenkins/workspace/var> '
                 sh 'cat /var/lib/jenkins/workspace/var'
