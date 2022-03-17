@@ -20,8 +20,9 @@ pipeline {
                             
                 //def VERSION = sh 'cat /var/lib/jenkins/workspace/var'
                 //echo "Variable is ${VERS}"
+                sh 'ls'
                 git branch: 'main', credentialsId: 'github', url: 'git@github.com:TarasPetryk/clinic.git'                
-                //sh 'ls'
+                sh 'ls'
                 //sh 'pwd'
             }
         }  
@@ -37,6 +38,7 @@ pipeline {
                 sh 'docker build -t taraspetryk/clinic:v.${VERS} .'
                 //sh 'echo Build'
                 sh 'rm -r *'
+                sh 'ls'
                 //sh 'docker rmi $(docker images | grep 'taraspetryk/clinic')'
             }
         }
@@ -46,7 +48,7 @@ pipeline {
             steps {
                 sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 sh 'docker push taraspetryk/clinic:v.${VERS}'
-                sh 'docker rmi $(docker images | grep "taraspetryk/clinic")'
+                sh 'docker rmi $(docker images "taraspetryk/clinic" -a -q)'
             }
         }
         
