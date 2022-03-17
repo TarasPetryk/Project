@@ -11,20 +11,8 @@ pipeline {
         
         stage('CHECKOUT') {
             agent { label 'self'}
-            environment {
-               VERSION = "1" 
-                }
             steps {
-                sh 'rm -r *'
-                
-                //sh 'cat /var/lib/jenkins/workspace/var'
-                            
-                //def VERSION = sh 'cat /var/lib/jenkins/workspace/var'
-                //echo "Variable is ${VERS}"
-                sh 'ls'
-                git branch: 'main', credentialsId: 'github', url: 'git@github.com:TarasPetryk/clinic.git'                
-                sh 'ls'
-                //sh 'pwd'
+                git branch: 'main', credentialsId: 'github', url: 'git@github.com:TarasPetryk/clinic.git'  
             }
         }  
         
@@ -35,12 +23,7 @@ pipeline {
                 script {
                   env.VERS = sh (script: 'cat /var/lib/jenkins/workspace/var', returnStdout: true).trim()
                 }    
-                //sh './mvnw package'
                 sh 'docker build -t taraspetryk/clinic:v.${VERS} .'
-                //sh 'echo Build'
-                sh 'rm -r *'
-                sh 'ls'
-                //sh 'docker rmi $(docker images | grep 'taraspetryk/clinic')'
             }
         }
         
@@ -56,12 +39,12 @@ pipeline {
     }
     
     post {   
-     always {
-     node('self') { 
+      always {
+       node('self') { 
          sh 'docker logout' 
          sh 'rm -r *'
-     }
-   }
-  }
+       }  
+      }
+    }
     
 }
