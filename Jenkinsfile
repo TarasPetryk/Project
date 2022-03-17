@@ -15,6 +15,7 @@ pipeline {
                VERSION = "1" 
                 }
             steps {
+                sh 'rm -r *'
                 
                 //sh 'cat /var/lib/jenkins/workspace/var'
                             
@@ -56,7 +57,10 @@ pipeline {
     
     post {   
      always {
-     node('self') { sh 'docker logout' }
+     node('self') { 
+         sh 'docker logout' 
+         //sh 'rm -r *'
+     }
    }
   }
     
