@@ -59,7 +59,7 @@ pipeline {
      always {
      node('self') { 
          sh 'docker logout' 
-         //sh 'rm -r *'
+         sh 'rm -r *'
      }
    }
   }
