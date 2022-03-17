@@ -13,7 +13,7 @@ pipeline {
                 sh 'cat /var/lib/jenkins/workspace/var'
                 sh 'echo "$(($(cat /var/lib/jenkins/workspace/var) + 1))" > /var/lib/jenkins/workspace/var '
                 script {
-                  env.VERS = "3"
+                  env.VERS = sh 'cat /var/lib/jenkins/workspace/var'
                 }                
                 //def VERSION = sh 'cat /var/lib/jenkins/workspace/var'
                 echo "Variable is ${VERS}"
