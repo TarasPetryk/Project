@@ -4,7 +4,7 @@ pipeline {
     stages {
         
         stage('CHECKOUT') {
-            agent { label 'self'
+            agent { label 'self'}
             steps {
                 git branch: 'main', credentialsId: 'github', url: 'git@github.com:TarasPetryk/clinic.git'                
                 sh 'ls'
@@ -13,6 +13,7 @@ pipeline {
         }  
         
         stage('BUILD') {
+            agent { label 'self'}
             steps {
                 //sh './mvnw package'
                 sh 'ls'
