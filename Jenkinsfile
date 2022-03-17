@@ -18,7 +18,7 @@ pipeline {
             agent { label 'self'}
             steps {
                 //sh './mvnw package'
-                //sh 'ls'
+                sh 'echo Build'
                 //sh 'rm -r *'
                 //sh 'ls'
             }
