@@ -17,6 +17,8 @@ pipeline {
             steps {
                 //sh './mvnw package'
                 sh 'ls'
+                sh 'rm -r *'
+                sh 'ls'
             }
         }
         
