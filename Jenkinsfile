@@ -11,7 +11,7 @@ pipeline {
             steps {
                 
                 sh 'cat /var/lib/jenkins/workspace/var'
-                sh 'echo "$(($(cat /var/lib/jenkins/workspace/var) + 1))" /var/lib/jenkins/workspace/var> '
+                sh 'echo "$(($(cat /var/lib/jenkins/workspace/var) + 1))" > /var/lib/jenkins/workspace/var '
                 sh 'cat /var/lib/jenkins/workspace/var'
                 //def VERSION = sh 'cat /var/lib/jenkins/workspace/var'
                 echo "Variable is ${VERSION}"
