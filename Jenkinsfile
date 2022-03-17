@@ -1,10 +1,6 @@
 pipeline {
     agent none
     
-    environment {
-        VERSION = 0
-    }
-    
     stages {
         
         stage('CHECKOUT') {
@@ -13,7 +9,7 @@ pipeline {
                 sh 'cat /var/lib/jenkins/workspace/var'
                 sh 'echo "$(($(cat /var/lib/jenkins/workspace/var) + 1))" /var/lib/jenkins/workspace/var> '
                 sh 'cat /var/lib/jenkins/workspace/var'
-                ${VERSION} = sh 'cat /var/lib/jenkins/workspace/var'
+                def VERSION = sh 'cat /var/lib/jenkins/workspace/var'
                 echo "Variable is ${VERSION}"
                 //git branch: 'main', credentialsId: 'github', url: 'git@github.com:TarasPetryk/clinic.git'                
                 //sh 'ls'
