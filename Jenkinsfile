@@ -23,6 +23,7 @@ pipeline {
                 script {
                   env.VERS = sh (script: 'cat /var/lib/jenkins/workspace/var', returnStdout: true).trim()
                 }    
+                //sh './mvnw package'
                 sh 'docker build -t taraspetryk/clinic:v.${VERS} .'
             }
         }
