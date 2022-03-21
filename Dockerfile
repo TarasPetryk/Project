@@ -6,8 +6,8 @@ RUN apt-get update && \
     apt-get -qy autoremove && \
     mkdir /home/clinic
 
-#ADD target /home/clinic/
+ADD target /home/clinic/
 
 EXPOSE 8080
 
-#CMD java -jar /home/clinic/*.jar
+CMD java -jar /home/clinic/*.jar
